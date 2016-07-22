@@ -7,7 +7,9 @@
 	}
 
 	*= postProcessBeforeInitialization получает оригинальный объект класса. Поэтому здесь можно хранить настощий класс бина.
+	*= на этапе @PostCustruct прокси нету, оригинальный класс.
 	*= postProcessAfterInitialization уже все обернуто в обертки.
+
 
 
 2. BeanDefinition читается BeanDefinitionReader-ом и кладется в BeanFactory.

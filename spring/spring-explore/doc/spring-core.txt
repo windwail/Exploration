@@ -9,6 +9,18 @@
 	*= postProcessBeforeInitialization получает оригинальный объект класса. Поэтому здесь можно хранить настощий класс бина.
 	*= на этапе @PostCustruct прокси нету, оригинальный класс.
 	*= postProcessAfterInitialization уже все обернуто в обертки.
+	*= чтобы получить доступ уже после того как все прокси созданы:
+	Но важно работать с BeanDefinition а не самими бинами, потому что они обычно lazy и создадутся при запросе.
+	@Component
+    public class MyApplicationListener implements ApplicationListener<ContextRefreshedEvent> {
+        @Autowired
+        BeanFactory factory;
+        @Override
+        public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+            System.out.println(factory.getClass().getName());
+        }
+    }
+
 
 2. BeanDefinition читается BeanDefinitionReader-ом и кладется в BeanFactory.
 
