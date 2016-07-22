@@ -1,0 +1,51 @@
+1. Объявление класса:
+
+@RestController
+@EnableAutoConfiguration
+public class Example { ... }
+
+@EnableAutoConfiguration - говорит спрингу что нужно сконфигурить приложение на основании зависимостей jar.
+
+2. 
+	- Constructor based DI
+	- Setter based DI
+3.
+	@Controller
+	@Service
+	@Component
+	@Repository
+
+	also
+
+	@Autowired
+	@Inject
+
+4. 
+	@ComponentScan - указывает где сканировать бины. 
+
+5. 
+	@Primary - в autowired для выбора кого вставлять.
+	@Qualifier - выбор конкретной реализации бина в autowired 
+
+6. 
+	Когда есть xml, в нем делаем
+		<context:component-scan base-package="demo"/>
+	В классе приложения:
+		@SpringBootApplication
+		@ImportResource("classpath:/spring/spring-config.xml")
+		public class DemoApplication { ... }
+7.
+	@Configuration 
+	=
+    <bean id="french" factory-bean="helloWorldFactory" factory-method="helloWorldSpanishImpl">
+            <constructor-arg value="fr"/>
+            <propertye name="some" ref="beanId"/>
+	</bean>
+8.
+	Способ задавать профайлы.
+	<beans profile="eglish">
+		<bean ...>
+		<bean ...>
+		<bean ...>
+	</beans>
+9.
