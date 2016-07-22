@@ -1,0 +1,17 @@
+
+1. BeanPostProcessor - позволяет настраивать бины до того как они попадут в Bean factory.
+
+	public interface BeanPostProcessor {
+	    Object postProcessBeforeInitialization(Object var1, String var2) throws BeansException;
+	    Object postProcessAfterInitialization(Object var1, String var2) throws BeansException;
+	}
+
+	*= postProcessBeforeInitialization получает оригинальный объект класса. Поэтому здесь можно хранить настощий класс бина.
+	*= postProcessAfterInitialization уже все обернуто в обертки.
+
+
+2. BeanDefinition читается BeanDefinitionReader-ом и кладется в BeanFactory.
+
+3. Чтобы не добавлять вручную все BeanPostProcessor-s в контекст прописывая бины, придумали неймспейсы
+	<context:annotation-config/> - сканирует уже добавленные бины.
+	<context:component-scan base-package=""/> - сканирует и добавляет бины по аннотациям.
