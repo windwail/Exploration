@@ -1,5 +1,56 @@
+1. Объявление класса:
 
-1. BeanPostProcessor - позволяет настраивать бины до того как они попадут в Bean factory.
+@RestController
+@EnableAutoConfiguration
+public class Example { ... }
+
+@EnableAutoConfiguration - говорит спрингу что нужно сконфигурить приложение на основании зависимостей jar.
+
+2. 
+	- Constructor based DI
+	- Setter based DI
+3.
+	@Controller
+	@Service
+	@Component
+	@Repository
+
+	also
+
+	@Autowired
+	@Inject
+
+4. 
+	@ComponentScan - указывает где сканировать бины. 
+
+5. 
+	@Primary - в autowired для выбора кого вставлять.
+	@Qualifier - выбор конкретной реализации бина в autowired 
+
+6. 
+	Когда есть xml, в нем делаем
+		<context:component-scan base-package="demo"/>
+	В классе приложения:
+		@SpringBootApplication
+		@ImportResource("classpath:/spring/spring-config.xml")
+		public class DemoApplication { ... }
+7.
+	@Configuration 
+	=
+    <bean id="french" factory-bean="helloWorldFactory" factory-method="helloWorldSpanishImpl">
+            <constructor-arg value="fr"/>
+            <propertye name="some" ref="beanId"/>
+	</bean>
+8.
+	Способ задавать профайлы.
+	<beans profile="eglish">
+		<bean ...>
+		<bean ...>
+		<bean ...>
+	</beans>
+9.
+
+10. BeanPostProcessor - позволяет настраивать бины до того как они попадут в Bean factory.
 
 	public interface BeanPostProcessor {
 	    Object postProcessBeforeInitialization(Object var1, String var2) throws BeansException;
@@ -21,15 +72,13 @@
         }
     }
 
+11. BeanDefinition читается BeanDefinitionReader-ом и кладется в BeanFactory.
 
-2. BeanDefinition читается BeanDefinitionReader-ом и кладется в BeanFactory.
-
-3. Чтобы не добавлять вручную все BeanPostProcessor-s в контекст прописывая бины, придумали неймспейсы
+12. Чтобы не добавлять вручную все BeanPostProcessor-s в контекст прописывая бины, придумали неймспейсы
 	<context:annotation-config/> - сканирует уже добавленные бины.
 	<context:component-scan base-package=""/> - сканирует и добавляет бины по аннотациям.
 
-
-4. Bean lifecycle:
+13. Bean lifecycle:
 	The following are the steps in a bean's life cycle:
 	1. The first step is to find and instantiate the beans. The Spring IoC container
 	reads the bean definitions from the XML and then instantiates them.
@@ -48,7 +97,7 @@
 	associated with the bean, their postProcessAfterInitialization()
 	methods are invoked.
 
-5. Ways to modify beans:
+14. Ways to modify beans:
 	Modify the HelloWorld class and implement the following Spring Framework interfaces:
 	• ApplicationContextAware : This will ask you to implement the
 	setApplicationContext method
@@ -62,7 +111,7 @@
 	postProcessAfterInitialization methods
 	• DisposableBean : This needs to implement the destroy() method
 
-6. Autowire options: 
+15. Autowire options: 
 	• no : By default, the settings is no . This means no autowiring.
 	• byName : The container tries to match and wire bean properties with the beans
 	defined by the same name in the configuration file.
@@ -75,14 +124,14 @@
 	• default : This tries to wire using autowire by constructor ; if it does not
 	work, then it tries autowire by byType .
 
-7. Spring provides annotations to wire collaborators. The following are the annotations:
+16. Spring provides annotations to wire collaborators. The following are the annotations:
 	• @Required : This annotation applies to the bean property setter method
 	• @Autowired : This can be applied to bean property setter methods,
 	constructor, and properties
 	• @Qualifier : This annotation along with @Autowired can be used to wire a
 	bean with the qualifier name
 
-8. Transactions: 
+17. Transactions: 
 	• Isolation: This returns the degree of isolation of this transaction from other transactions.
 		° ISOLATION_DEFAULT
 		° ISOLATION_READ_COMMITTED
@@ -121,8 +170,4 @@
 		• ISOLATION_SERIALIZABLE : Dirty, phantom, and non-repeatable reads are
 		prevented. However, this hampers the performance of the application.
 	
-	
-	
-	
-	
-	
+

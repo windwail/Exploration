@@ -20,6 +20,11 @@
             System.out.println(factory.getClass().getName());
         }
     }
+    -------
+    Еще есть BeanFactoryPostProcessor - может подкручитьвать как биндифинишены, так и фактори, Т.к. запускается до всего этого.
+    public interface BeanFactoryPostProcessor {
+    	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
+    }
 
 
 2. BeanDefinition читается BeanDefinitionReader-ом и кладется в BeanFactory.
