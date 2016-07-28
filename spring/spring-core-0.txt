@@ -1,0 +1,77 @@
+
+--. Bean lifecycle:
+	The following are the steps in a bean's life cycle:
+	1. The first step is to find and instantiate the beans. The Spring IoC container
+	reads the bean definitions from the XML and then instantiates them.
+	2. The next step is to populate the bean properties and satisfy the dependencies.
+	The IoC container uses dependency injection to set the properties.
+	3. After setting the dependencies, the setBeanName method is invoked on the
+	beans; if they implement the BeanNameAware interface, the setBeanName()
+	method is invoked by passing the ID of the bean.
+	4. After this, if a bean implements the BeanFactoryAware interface, the
+	setBeanFactory() method is called with an instance of itself.
+	5. The pre-initialization of BeanPostProcessor is done. If a bean
+	has any BeanPostProcessor interface associated with it, the
+	processBeforeInitialization() methods are called on the post processors.
+	6. The init method is called; if a bean specifies an init-method , it will be called.
+	7. Finally, the post-initialization is done; if there are any BeanPostProcessors
+	associated with the bean, their postProcessAfterInitialization()
+	methods are invoked.
+
+--. Ways to modify beans:
+	Modify the HelloWorld class and implement the following Spring Framework interfaces:
+	• ApplicationContextAware : This will ask you to implement the
+	setApplicationContext method
+	• BeanNameAware : This will tell you to implement the setBeanName method
+	• InitializingBean : This will force you to implement the
+	afterPropertiesSet() method
+	• BeanFactoryAware : This will request you to implement the
+	setBeanFactory method
+	• BeanPostProcessor : This needs you to implement
+	the postProcessBeforeInitialization and
+	postProcessAfterInitialization methods
+	• DisposableBean : This needs to implement the destroy() method
+
+--. Autowire options: 
+	• no : By default, the settings is no . This means no autowiring.
+	• byName : The container tries to match and wire bean properties with the beans
+	defined by the same name in the configuration file.
+	• byType : The container tries to match a property if its type matches with
+	exactly one of the bean names in the configuration file. If more than one
+	such bean exists, an exception is thrown.
+	• constructor : This is similar to type but looks at the constructor type
+	matching. If more than one bean of the constructor argument type is
+	found in the container, an exception is thrown.
+	• default : This tries to wire using autowire by constructor ; if it does not
+	work, then it tries autowire by byType .
+
+--. Spring provides annotations to wire collaborators. The following are the annotations:
+	• @Required : This annotation applies to the bean property setter method
+	• @Autowired : This can be applied to bean property setter methods,
+	constructor, and properties
+	• @Qualifier : This annotation along with @Autowired can be used to wire a
+	bean with the qualifier name
+
+--. Transactions: 
+	• Isolation: This returns the degree of isolation of this transaction from other transactions.
+		° ISOLATION_DEFAULT
+		° ISOLATION_READ_COMMITTED
+		° ISOLATION_READ_UNCOMMITTED
+		° ISOLATION_REPEATABLE_READ
+		° ISOLATION_SERIALIZABLE
+	• Propagation: This returns the transaction propagation behavior. The
+	following are the allowable values:
+		° PROPAGATION_MANDATORY : This needs a current transaction and raises an error if no current transaction exists
+		° PROPAGATION_NESTED : This executes the current transaction within a nested transaction
+		° PROPAGATION_NEVER : This doesn't support a current transaction and raises an error if a current transaction exists
+		° PROPAGATION_NOT_SUPPORTED : This executes code non-transactionally transaction exists
+		° PROPAGATION_REQUIRED : This creates a new transaction if no and creates a new transaction
+		° PROPAGATION_REQUIRES_NEW : This suspends the current transaction
+		° PROPAGATION_SUPPORTS : If the current transaction exists, then this supports it; otherwise, it executes the code non-tra
+		° TIMEOUT_DEFAULT : This uses the default timeout
+	
+	
+	
+	
+	
+	
