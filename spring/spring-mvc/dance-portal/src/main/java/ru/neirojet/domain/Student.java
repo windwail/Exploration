@@ -1,8 +1,10 @@
 package ru.neirojet.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDate;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Student {
 
     private String name;
@@ -10,8 +12,6 @@ public class Student {
     private String secondName;
 
     private LocalDate birthDate;
-
-    private String photoUlr;
 
     public String getName() {
         return name;
@@ -37,11 +37,4 @@ public class Student {
         this.birthDate = birthDate;
     }
 
-    public String getPhotoUlr() {
-        return photoUlr;
-    }
-
-    public void setPhotoUlr(String photoUlr) {
-        this.photoUlr = photoUlr;
-    }
 }
