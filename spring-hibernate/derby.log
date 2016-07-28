@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sat Jul 23 16:19:37 MSK 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0156-17e9-40a6-00000be36cd0 
+on database directory memory:/home/icetusk/Documents/Explorations/spring-hibernate/testdb with class loader sun.misc.Launcher$AppClassLoader@7cc355be 
+Loaded from file:/home/icetusk/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_101-b13
+user.dir=/home/icetusk/Documents/Explorations/spring-hibernate
+os.name=Linux
+os.arch=amd64
+os.version=4.2.0-41-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

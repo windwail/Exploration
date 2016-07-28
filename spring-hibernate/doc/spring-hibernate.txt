@@ -1,0 +1,75 @@
+0. Используемые паттерны:
+    - Template Pattern
+    - DAO pattern
+    - Active-Record pattern - рекорд потому что это конкретная запись в базе данных, и все операции которые нужно
+    произвести с объектов выполняются конкретно на нем, o.save(), o.delete() и т.д.
+
+1. Чтобы быть уверенным в том, что все последовательность действия для базы данных будет сохранена, мы поьзуемся Template Pattern-ом
+
+    public void customSavePerson(Person person) {
+        getHibernateTemplate().execute(
+            new HibernateCallback<Person>() {
+                public Person doInHibernate(Session session) throws HibernateException {
+                    session.saveOrUpdate(person);
+                }
+            }
+        );
+    }
+
+2. В web.xml можно поместить листенер, чтобы в вебе поднять спринг контекст:
+    web.xml :
+    <listener>
+         <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+         </listener-class>
+    </listener>
+    * - расположение должно быть WEB-INF/applicationcontext.xml
+    -------
+    Если это не не веб, то так:
+    ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"configfile1.xml", "configfile2.xml"});
+
+3. Способы инициализации бинов:
+    -------
+    - Инит метод указанный в xml
+    <bean id="initTest" class="com.apress.springpersistence.audiomanager.InitTest" init-method="init">
+        <property name="testString" value="Let me out of this computer!"/>
+    </bean>
+    -------
+    - @PostConstruct
+    -------
+    - Реализовать у бина интерфейс (но это плохо):
+      public interface InitializingBean {
+          void afterPropertiesSet() throws Exception;
+      }
+    -------
+
+3. Способы деструкта бинов: @PreDestory, destroy-method, DisposableBean
+
+4. Основные скоупы бинов:
+    - Singleton
+    - Prototype - любое количество бинов в контексте.
+    - Request - один бин на запрос. (только в web-aware application context)
+    - Session - один на сессию, тоже только в веб.
+    - Simple thread - привязка к потоку, ThreadLocal.
+
+5. @Configuration
+    -------
+    Объявить можно вручную:
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        ctx.register(AppConfig.class);
+        ctx.refresh();
+    Объявить можно в xml:
+        <beans>
+            <context:annotation-config/> | <context:component-scan/>
+            <bean class="com.acme.AppConfig"/>
+         </beans>
+    -------
+
+6.
+    @EnableSpringConfigured
+        - на основании того, что в класспасе использует xxxAutoConfiguration
+
+    @EnableJPARepositories
+        - сканируем на наличие репозиториев.
+
+

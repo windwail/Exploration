@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="PostgreSQL - jdbc-explore@localhost" uuid="e46de675-c9f8-4e1a-b619-8d5456b9a641">
+    <database-info product="PostgreSQL" version="9.4.8" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.5">
+      <database id="1" name="jdbc-explore"/>
+      <schema id="2" parent="1" name="public">
+        <object-id>2200</object-id>
+        <comment>standard public schema</comment>
+        <introspection-state-number>755</introspection-state-number>
+        <introspection-timestamp>2016-07-23.17:40:44.025</introspection-timestamp>
+      </schema>
+      <sequence id="3" parent="2" name="dev_id">
+        <object-id>16464</object-id>
+        <state-number>753</state-number>
+      </sequence>
+      <table id="4" parent="2" name="contact">
+        <object-id>16466</object-id>
+        <state-number>755</state-number>
+      </table>
+      <table id="5" parent="2" name="contact_tel_detail">
+        <object-id>16474</object-id>
+        <state-number>755</state-number>
+      </table>
+      <column id="6" parent="4" name="id">
+        <state-number>754</state-number>
+        <mandatory>1</mandatory>
+        <data-type>integer</data-type>
+        <default-expression>nextval(&apos;dev_id&apos;::regclass)</default-expression>
+      </column>
+      <column id="7" parent="4" name="first_name">
+        <state-number>754</state-number>
+        <mandatory>1</mandatory>
+        <data-type>varchar(60)</data-type>
+      </column>
+      <column id="8" parent="4" name="last_name">
+        <state-number>754</state-number>
+        <mandatory>1</mandatory>
+        <data-type>varchar(40)</data-type>
+      </column>
+      <column id="9" parent="4" name="birth_date">
+        <state-number>754</state-number>
+        <data-type>date</data-type>
+      </column>
+      <index id="10" parent="4" name="contact_pkey">
+        <object-id>16470</object-id>
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="11" parent="4" name="contact_first_name_last_name_key">
+        <object-id>16472</object-id>
+        <columns>first_name
+last_name</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="12" parent="4" name="contact_pkey">
+        <columns>id</columns>
+        <underlying-index>contact_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+      <key id="13" parent="4" name="contact_first_name_last_name_key">
+        <columns>first_name
+last_name</columns>
+        <underlying-index>contact_first_name_last_name_key</underlying-index>
+      </key>
+      <column id="14" parent="5" name="id">
+        <state-number>755</state-number>
+        <mandatory>1</mandatory>
+        <data-type>integer</data-type>
+        <default-expression>nextval(&apos;dev_id&apos;::regclass)</default-expression>
+      </column>
+      <column id="15" parent="5" name="contact_id">
+        <state-number>755</state-number>
+        <mandatory>1</mandatory>
+        <data-type>integer</data-type>
+      </column>
+      <column id="16" parent="5" name="tel_type">
+        <state-number>755</state-number>
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="17" parent="5" name="tel_number">
+        <state-number>755</state-number>
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <index id="18" parent="5" name="contact_tel_detail_pkey">
+        <object-id>16478</object-id>
+        <columns>id</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <index id="19" parent="5" name="contact_tel_detail_contact_id_tel_type_key">
+        <object-id>16480</object-id>
+        <columns>contact_id
+tel_type</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="20" parent="5" name="contact_tel_detail_pkey">
+        <columns>id</columns>
+        <underlying-index>contact_tel_detail_pkey</underlying-index>
+        <primary>1</primary>
+      </key>
+      <key id="21" parent="5" name="contact_tel_detail_contact_id_tel_type_key">
+        <columns>contact_id
+tel_type</columns>
+        <underlying-index>contact_tel_detail_contact_id_tel_type_key</underlying-index>
+      </key>
+      <foreign-key id="22" parent="5" name="contact_tel_detail_contact_id_fkey">
+        <columns>contact_id</columns>
+        <ref-key>~.contact.contact_pkey</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+    </database-model>
+  </data-source>
+</component>

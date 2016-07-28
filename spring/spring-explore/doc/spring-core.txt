@@ -1,0 +1,34 @@
+
+1. BeanPostProcessor - позволяет настраивать бины до того как они попадут в Bean factory.
+
+	public interface BeanPostProcessor {
+	    Object postProcessBeforeInitialization(Object var1, String var2) throws BeansException;
+	    Object postProcessAfterInitialization(Object var1, String var2) throws BeansException;
+	}
+
+	*= postProcessBeforeInitialization получает оригинальный объект класса. Поэтому здесь можно хранить настощий класс бина.
+	*= на этапе @PostCustruct прокси нету, оригинальный класс.
+	*= postProcessAfterInitialization уже все обернуто в обертки.
+	*= чтобы получить доступ уже после того как все прокси созданы:
+	Но важно работать с BeanDefinition а не самими бинами, потому что они обычно lazy и создадутся при запросе.
+	@Component
+    public class MyApplicationListener implements ApplicationListener<ContextRefreshedEvent> {
+        @Autowired
+        BeanFactory factory;
+        @Override
+        public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+            System.out.println(factory.getClass().getName());
+        }
+    }
+    -------
+    Еще есть BeanFactoryPostProcessor - может подкручитьвать как биндифинишены, так и фактори, Т.к. запускается до всего этого.
+    public interface BeanFactoryPostProcessor {
+    	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
+    }
+
+
+2. BeanDefinition читается BeanDefinitionReader-ом и кладется в BeanFactory.
+
+3. Чтобы не добавлять вручную все BeanPostProcessor-s в контекст прописывая бины, придумали неймспейсы
+	<context:annotation-config/> - сканирует уже добавленные бины.
+	<context:component-scan base-package=""/> - сканирует и добавляет бины по аннотациям.
