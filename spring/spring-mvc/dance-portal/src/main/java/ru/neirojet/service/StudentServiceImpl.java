@@ -61,4 +61,9 @@ public class StudentServiceImpl implements StudentService {
     public void saveStudent(Student student) {
         students.put(student.getId(), student);
     }
+
+    @Override
+    public void delete(Integer id) {
+        students.remove(id);
+    }
 }

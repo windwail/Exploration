@@ -17,6 +17,8 @@ public interface StudentService {
 
     void saveStudent(Student s);
 
+    void delete(Integer id);
+
     Student createStudent();
 
 }

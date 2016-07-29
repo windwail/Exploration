@@ -46,6 +46,12 @@ public class IndexController {
         return "student-form";
     }
 
+    @RequestMapping("/student-delete/{id}")
+    public String studentDelete(@PathVariable Integer id) {
+        service.delete(id);
+        return "redirect:/students";
+    }
+
     @RequestMapping(value = "/student", method = RequestMethod.POST)
     public String studentNew(Student student) {
         service.saveStudent(student);

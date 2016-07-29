@@ -17,8 +17,9 @@ import java.util.LinkedList;
 
 @Service
 public class StudentFactoryRestImpl implements StudentFactory{
-    @Override
+    private int count = 10000;
 
+    @Override
     public Student createStudent()  {
         try {
             RestTemplate restTemplate = new RestTemplate();
@@ -72,6 +73,8 @@ public class StudentFactoryRestImpl implements StudentFactory{
                     }
                 }
             }
+
+            s.setId(++count);
 
             return s;
 
