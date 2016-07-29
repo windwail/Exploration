@@ -93,6 +93,10 @@
                                 <p class="form-control-static" th:text="${student.cell}">Cell</p>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <a th:href="${'/student-edit/' + student.id}" class="btn btn-default">Edit</a>
+                        </div>
                     </form>
                 </div>
             </div>

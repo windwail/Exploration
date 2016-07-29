@@ -35,6 +35,10 @@ public class StudentFactoryFileImpl implements StudentFactory {
     @Override
     public Student createStudent() {
         count = (count >= students.length)? 0 : ++count;
-        return students[count];
+
+        Student s  = students[count];
+        s.setId(count);
+
+        return s;
     }
 }

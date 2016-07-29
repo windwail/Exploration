@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Student {
 
+    private Integer id;
+
     @JsonProperty("results.login.username")
     private String login;
 
@@ -81,45 +83,11 @@ public class Student {
         this.photoUrl = photoUrl;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "login='" + login + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", cell='" + cell + '\'' +
-                ", gender='" + gender + '\'' +
-                ", photoUrl='" + photoUrl + '\'' +
-                '}';
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Student student = (Student) o;
-
-        if (login != null ? !login.equals(student.login) : student.login != null) return false;
-        if (firstName != null ? !firstName.equals(student.firstName) : student.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(student.lastName) : student.lastName != null) return false;
-        if (email != null ? !email.equals(student.email) : student.email != null) return false;
-        if (cell != null ? !cell.equals(student.cell) : student.cell != null) return false;
-        if (gender != null ? !gender.equals(student.gender) : student.gender != null) return false;
-        return photoUrl != null ? photoUrl.equals(student.photoUrl) : student.photoUrl == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = login != null ? login.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (cell != null ? cell.hashCode() : 0);
-        result = 31 * result + (gender != null ? gender.hashCode() : 0);
-        result = 31 * result + (photoUrl != null ? photoUrl.hashCode() : 0);
-        return result;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

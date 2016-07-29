@@ -27,28 +27,31 @@ public class IndexController {
     }
 
 
-    @RequestMapping("/student/{name}")
-    public String student(@PathVariable String name, Model model) {
-        model.addAttribute("student", service.findByName(name));
+    @RequestMapping("/student/{id}")
+    public String student(@PathVariable Integer id, Model model) {
+        model.addAttribute("student", service.findById(id));
         return "student";
     }
 
     @RequestMapping("/student-new")
     public String studentNew(Model model) {
-        model.addAttribute("student", service.createStudent());
+        Student s = service.createStudent();
+        model.addAttribute("student", s);
+        return "student-form";
+    }
+
+    @RequestMapping("/student-edit/{id}")
+    public String studentEdit(@PathVariable Integer id, Model model) {
+        model.addAttribute("student", service.findById(id));
         return "student-form";
     }
 
     @RequestMapping(value = "/student", method = RequestMethod.POST)
     public String studentNew(Student student) {
         service.saveStudent(student);
-        return "redirect:/student/"+student.getFirstName();
+        return "redirect:/student/"+student.getId();
     }
 
-    @RequestMapping("/student-edit/{name}")
-    public String edit(@PathVariable String name, Model model) {
-        model.addAttribute("student", service.findByName(name));
-        return "student";
-    }
-    
+
+
 }

@@ -13,6 +13,8 @@ public interface StudentService {
 
     Student findByName(String name);
 
+    Student findById(Integer id);
+
     void saveStudent(Student s);
 
     Student createStudent();

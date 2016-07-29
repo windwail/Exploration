@@ -77,7 +77,8 @@
                                 <th th:text="${student.gender}"></th>
                                 <th th:text="${student.email}"></th>
                                 <th th:text="${student.cell}"></th>
-                                <th><a th:href="${'/student/' + student.firstName}">View</a></th>
+                                <th><a th:href="${'/student/' +  student.id}">View</a></th>
+                                <th><a th:href="${'/student-edit/' + student.id}">Edit</a></th>
                             </tr>
                         </table>
                     </div>

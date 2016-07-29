@@ -7,12 +7,14 @@ import ru.neirojet.domain.Student;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private static List<Student> students = new ArrayList<>();
+    private static Map<Integer, Student> students = new HashMap<>();
 
     @Qualifier("studentFactoryFileImpl")
     @Autowired
@@ -25,7 +27,8 @@ public class StudentServiceImpl implements StudentService {
     @PostConstruct
     public void init() {
         for(int i=0; i < 5; i++) {
-            students.add(factory.createStudent());
+            Student s = factory.createStudent();
+            students.put(s.getId(),s);
         }
     }
 
@@ -36,12 +39,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> findAll() {
-        return students;
+        return new ArrayList(students.values());
     }
 
     @Override
     public Student findByName(String name) {
-        for(Student s: students) {
+        for(Student s: students.values()) {
             if(s.getFirstName().equalsIgnoreCase(name) || s.getLastName().equalsIgnoreCase(name)) {
                 return s;
             }
@@ -50,8 +53,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student findById(Integer id) {
+        return students.get(id);
+    }
+
+    @Override
     public void saveStudent(Student student) {
-        students.remove(student);
-        students.add(student);
+        students.put(student.getId(), student);
     }
 }
