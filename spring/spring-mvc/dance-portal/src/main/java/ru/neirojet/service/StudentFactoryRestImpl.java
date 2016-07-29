@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 @Service
-public class StudentFactoryFactoryImpl implements StudentFactory{
+public class StudentFactoryRestImpl implements StudentFactory{
     @Override
 
     public Student createStudent()  {

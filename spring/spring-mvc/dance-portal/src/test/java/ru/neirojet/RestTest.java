@@ -3,7 +3,7 @@ package ru.neirojet;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import ru.neirojet.domain.Student;
-import ru.neirojet.service.StudentFactoryFactoryImpl;
+import ru.neirojet.service.StudentFactoryRestImpl;
 import ru.neirojet.service.StudentFactoryFileImpl;
 
 import java.io.File;
@@ -17,7 +17,7 @@ public class RestTest {
     @Test
     public void testRest() throws Exception {
 
-        StudentFactoryFactoryImpl factory = new StudentFactoryFactoryImpl();
+        StudentFactoryRestImpl factory = new StudentFactoryRestImpl();
 
         List<Student> students = new ArrayList<>();
 

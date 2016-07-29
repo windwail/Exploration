@@ -26,8 +26,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-
 </head>
 
 <body>
@@ -44,10 +42,13 @@
                 </a>
             </li>
             <li>
-                <a href="#">Home</a>
+                <a href="/">Home</a>
             </li>
             <li>
                 <a href="/students">Students</a>
+            </li>
+            <li>
+                <a href="/student-new">New student</a>
             </li>
         </ul>
     </div>
@@ -76,6 +77,7 @@
                                 <th th:text="${student.gender}"></th>
                                 <th th:text="${student.email}"></th>
                                 <th th:text="${student.cell}"></th>
+                                <th><a th:href="${'/student/' + student.firstName}">View</a></th>
                             </tr>
                         </table>
                     </div>

@@ -15,4 +15,6 @@ public interface StudentService {
 
     void saveStudent(Student s);
 
+    Student createStudent();
+
 }
