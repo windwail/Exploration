@@ -21,7 +21,7 @@ public class IndexController {
     @RequestMapping("/students")
     public String students(Model model){
 
-        model.addAttribute(service.findAll());
+        model.addAttribute("students", service.findAll());
 
         return "students";
     }

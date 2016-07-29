@@ -1,50 +1,29 @@
 package ru.neirojet.service;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import ru.neirojet.domain.Student;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class StudentServiceImpl implements StudentService {
 
     private static List<Student> students = new ArrayList<>();
 
 
+    @Qualifier("studentFactoryFileImpl")
+    @Autowired
+    StudentFactory factory;
+
     @PostConstruct
     public void init() {
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(
-                "https://randomuser.me/api/",
-                String.class);
-
-        System.out.println(response);
-
-        Student s = new Student();
-        s.setBirthDate(LocalDate.of(1984, 5, 23));
-        s.setName("Vasya");
-        s.setSecondName("Pupking");
-        students.add(s);
-
-        s = new Student();
-        s.setBirthDate(LocalDate.of(1983, 4, 12));
-        s.setName("Mariya");
-        s.setSecondName("Tarasova");
-        students.add(s);
-
-        s = new Student();
-        s.setBirthDate(LocalDate.of(1980, 2, 1));
-        s.setName("Chuck");
-        s.setSecondName("Norris");
-        students.add(s);
-
-
+        for(int i=0; i < 100; i++) {
+            students.add(factory.createStudent());
+        }
     }
 
 
@@ -55,11 +34,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findByName(String name) {
+        for(Student s: students) {
+            if(s.getFirstName().equalsIgnoreCase(name) || s.getLastName().equalsIgnoreCase(name)) {
+                return s;
+            }
+        }
         return null;
     }
 
     @Override
-    public void saveStudent(Student s) {
-
+    public void saveStudent(Student student) {
+        students.remove(student);
+        students.add(student);
     }
 }
