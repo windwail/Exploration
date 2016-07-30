@@ -23,27 +23,27 @@ public class IndexController {
     @RequestMapping("/students")
     public String students(Model model){
         model.addAttribute("students", service.findAll());
-        return "students";
+        return "student/list";
     }
 
 
     @RequestMapping("/student/{id}")
     public String student(@PathVariable Integer id, Model model) {
         model.addAttribute("student", service.findById(id));
-        return "student";
+        return "student/show";
     }
 
     @RequestMapping("/student-new")
     public String studentNew(Model model) {
         Student s = service.createStudent();
         model.addAttribute("student", s);
-        return "student-form";
+        return "student/student-form";
     }
 
     @RequestMapping("/student-edit/{id}")
     public String studentEdit(@PathVariable Integer id, Model model) {
         model.addAttribute("student", service.findById(id));
-        return "student-form";
+        return "student/student-form";
     }
 
     @RequestMapping("/student-delete/{id}")
