@@ -2,9 +2,17 @@ package ru.neirojet.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
+
+@Entity
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Version
+    private Integer version;
 
     @JsonProperty("results.login.username")
     private String login;
@@ -89,5 +97,13 @@ public class Student {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }
