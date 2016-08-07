@@ -34,7 +34,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student createStudent() {
-        return restFactory.createStudent();
+        Student s = restFactory.createStudent();
+        if(s==null) s = new Student();
+        return s;
+    }
+
+    @Override
+    public void setStudentFactory(StudentFactory factory) {
+        this.factory = factory;
     }
 
     @Override
