@@ -1,0 +1,8 @@
+1. WebServices
+
+2. Spring (MVC, Security)
+
+3. JPA, Spring Data
+
+4. NoSQL (MongoDB, Redis, Cassandra)
+
